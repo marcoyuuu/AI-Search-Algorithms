@@ -1,6 +1,6 @@
-# **University of Puerto Rico at Mayagüez**  
-### **Department of Electrical and Computer Engineering**  
-#### **ICOM5015 - Artificial Intelligence**  
+# University of Puerto Rico at Mayagüez  
+### Department of Electrical and Computer Engineering  
+#### ICOM5015 - Artificial Intelligence
 
 **Project Title:** AI Search Algorithms & Negative Step Costs  
 **Assignment:** Programming Homework – Chapter 3 (Problems 3.7 & 3.9)  
@@ -20,170 +20,172 @@
 
 ---
 
-# **AI Search Algorithms & Negative Step Costs**  
-**Implementation and Analysis of Search Algorithms (Problems 3.7 & 3.9)**  
-*(Based on Russell & Norvig, *Artificial Intelligence: A Modern Approach*, 3rd Edition, and UC Berkeley AI Repository)*  
+## Overview & Purpose
+
+This project implements and analyzes state-space search algorithms to solve Problems 3.7 and 3.9 from *Artificial Intelligence: A Modern Approach (3rd Edition)*. The focus is on:
+
+- **Uninformed Search:** BFS, DFS, Uniform Cost Search (UCS)
+- **Informed Search:** A* (using a Euclidean heuristic)
+- **Graph Search vs. Tree Search:** Evaluating efficiency and optimality
+- **Handling Negative Step Costs:** Implementing Bellman-Ford and Johnson’s Algorithms for problems with negative weights (code provided from UC Berkeley’s repository)
+
+Additionally, the project features a custom environment that replicates Figure 3.31 using a manually defined state space with polygons. Enhanced visualization routines both display and save figures (with descriptive filenames) in a designated folder.
 
 ---
 
-## 📖 **Overview & Purpose**
-
-This project implements and analyzes **state-space search algorithms** to solve **Problems 3.7 and 3.9** from *Artificial Intelligence: A Modern Approach (3rd Edition)*. The assignment focuses on search strategies in AI, including the impact of **negative step costs** on search algorithms.
-
-**Core AI Concepts Applied:**  
-- **Uninformed Search:** Breadth-First Search (BFS), Depth-First Search (DFS), Uniform-Cost Search (UCS)  
-- **Informed Search:** A* Algorithm with heuristic functions  
-- **Graph Search vs. Tree Search:** Optimizing search efficiency  
-- **Negative Weight Handling:** Bellman-Ford Algorithm, Johnson’s Algorithm  
-
----
-
-## **📂 Assignment Breakdown**
-
-### **Problem 3.7: Search Strategies & State-Space Representation**
-- Implement **BFS, DFS, UCS, and A\*** search algorithms.
-- Compare **tree search vs. graph search** in efficiency and optimality.
-- Evaluate search performance on different problem instances.
-
-### **Problem 3.9: Handling Negative Step Costs**
-- Investigate the **impact of negative weights** on search algorithms.
-- Implement **Bellman-Ford Algorithm** for shortest paths with negative weights.
-- Use **Johnson’s Algorithm** to handle graphs with negative edges efficiently.
-- **Detect and handle negative weight cycles** (where no optimal solution exists).
-
-These problems illustrate how search algorithms operate under **different constraints** and how **negative costs introduce challenges** in traditional search strategies.
-
----
-
-## **📂 Repository Structure**
+## Repository Structure
 
 ```
 AI-Search-Algorithms/
-│── 📄 README.md               # Project Overview & Documentation
-│── 📄 LICENSE                 # Open-source license (MIT)
-│── 📄 .gitignore               # Ignore unnecessary files
-│── 📁 src/                     # Source code for search algorithms
-│   │── bfs_dfs.py              # BFS & DFS implementations
-│   │── ucs_astar.py            # UCS & A* implementations
-│   │── bellman_ford.py         # Bellman-Ford Algorithm for negative weights
-│   │── johnson.py              # Johnson's Algorithm for reweighting graphs
-│   │── problem.py              # Problem definitions (state-space representation)
-│   │── main.py                 # Entry point for running search algorithms
-│── 📁 notebooks/               # Jupyter Notebook with analysis
-│   │── AI_Search_Report.ipynb  # Report including explanations and code
-│── 📁 tests/                   # Unit tests for algorithms
-│   │── test_search.py          # Verifies correctness of implemented searches
-│── 📁 reports/                 # Assignment analysis and findings
-│   │── problem_analysis.md     # Detailed breakdown of Problems 3.7 & 3.9
-│   │── experiment_results.md   # Performance evaluation of search methods
-│── 📁 presentations/           # Video and slides for assignment
-│   │── slides.pptx             # PowerPoint Presentation
-│   │── video_link.txt          # Link to recorded video submission
-│── 📁 data/                    # Sample problem instances (if applicable)
-│── 📁 docs/                    # Additional documentation
+│
+├── codebase.txt                 # Overview of the project’s file structure
+├── llmify_config.yaml           # LLMify configuration to ignore specific files/directories
+├── README.md                    # This file: project overview and documentation
+├── requirements.txt             # Required Python packages (numpy, matplotlib, heapq)
+│
+├── notebooks/                   # Jupyter Notebooks for analysis and reporting
+│   └── AI_Search_Report.ipynb   # Detailed report on search algorithms and experiments
+│
+├── presentations/               # Presentation materials for the assignment
+│   ├── slides.pptx              # PowerPoint slides
+│   └── video_link.txt           # Link to the video submission
+│
+├── reports/                     # Written reports and analysis documents
+│   ├── experiment_results.md    # Performance evaluation of search methods
+│   └── problem_analysis.md      # Detailed breakdown of Problems 3.7 & 3.9
+│
+├── src/                         # Source code
+│   ├── berkeley_ai/             # UC Berkeley search code (unaltered)
+│   │   ├── search.py            # Search algorithms (BFS, DFS, UCS, A*, etc.)
+│   │   └── utils.py             # Utility functions for search algorithms
+│   │
+│   └── shortest_path/           # Custom environment and search problem modules
+│       ├── geometry.py          # Geometry utilities (intersection, point-in-polygon, etc.)
+│       ├── state_space.py       # StateSpace and Vertex classes (environment definition, polygon connections, and drawing with labels)
+│       ├── figure_3_31_env.py   # Builds the Figure 3.31 environment with manual connectivity
+│       ├── search_problem.py    # Definition of ConvexPolygonPathProblem and search wrapper functions (BFS, DFS, UCS, A*)
+│       └── main.py              # Main execution script; builds the environment, runs searches, and visualizes results
+│
+└── tests/                       # Unit tests for verifying search algorithm correctness
+    └── test_search.py
 ```
 
 ---
 
-## **🛠️ Installation & Setup**
+## Installation & Setup
 
-### **🔹 Prerequisites**
-- Python 3.8+
+### Prerequisites
+
+- Python 3.8 or higher
 - Jupyter Notebook
 - Required Libraries: `numpy`, `matplotlib`, `heapq`
 
-### **🔹 Installation**
-1. **Clone or Download the Repository**  
-```bash
-git clone https://github.com/YOUR_USERNAME/AI-Search-Algorithms.git
-cd AI-Search-Algorithms
-```
-2. **Install Dependencies**  
-```bash
-pip install -r requirements.txt
-```
+### Installation
+
+1. **Clone the Repository**
+    ```bash
+    git clone https://github.com/YOUR_USERNAME/AI-Search-Algorithms.git
+    cd AI-Search-Algorithms
+    ```
+2. **Install Dependencies**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
 ---
 
-## **🚀 Running the Code**
-### **1️⃣ Running BFS & DFS**
-```bash
-python src/bfs_dfs.py
-```
-### **2️⃣ Running UCS & A\***
-```bash
-python src/ucs_astar.py
-```
-### **3️⃣ Running Bellman-Ford Algorithm**
-```bash
-python src/bellman_ford.py
-```
-### **4️⃣ Running Johnson’s Algorithm**
-```bash
-python src/johnson.py
-```
+## Running the Code
 
-### **Running Jupyter Notebook**
+### Running Individual Algorithms
+
+- **BFS & DFS:**  
+  ```bash
+  python src/bfs_dfs.py
+  ```
+- **UCS & A\*:**  
+  ```bash
+  python src/ucs_astar.py
+  ```
+- **Bellman-Ford & Johnson’s Algorithm:**  
+  ```bash
+  python src/bellman_ford.py
+  python src/johnson.py
+  ```
+
+### Running the Main Environment & Visualizations
+
+The main script builds the custom Figure 3.31 environment, runs BFS, DFS, UCS, and A* searches, and displays & saves visualizations.
+
+To run the main script:
 ```bash
-jupyter notebook notebooks/AI_Search_Report.ipynb
+# Ensure you run from the project root or set PYTHONPATH appropriately.
+python -m shortest_path.main
 ```
+This will:
+- Display the initial state space (with polygon labels).
+- Execute all search algorithms.
+- Show each solution path on screen.
+- Save each visualization in the `visualizations/` folder with descriptive filenames (e.g., `bfs_solution.png`, `dfs_solution.png`, etc.).
 
 ---
 
-## **📊 Performance Evaluation & Analysis**
-### **Search Algorithm Comparisons**
+## Performance Evaluation & Analysis
+
 Each algorithm is evaluated based on:
-1. **Time Complexity:** Number of node expansions.
-2. **Space Complexity:** Memory required for frontier/explored sets.
-3. **Optimality:** Whether the algorithm guarantees the shortest path.
+- **Time Complexity:** Number of node expansions.
+- **Space Complexity:** Memory usage for frontiers/explored sets.
+- **Optimality:** Whether the algorithm finds the shortest path.
 
-### **Handling Negative Step Costs**
-- **Bellman-Ford Algorithm** detects and handles negative weights.
-- **Johnson’s Algorithm** reweights graphs for efficient shortest path calculations.
-- **Performance Comparison:** Time complexity of Bellman-Ford \(O(VE)\) vs. Johnson’s \(O(VE + V\log V)\).
+In our experiments:
+- **BFS and DFS** may return longer, suboptimal paths.
+- **UCS and A\*** (with the Euclidean heuristic) typically return the optimal path.
 
----
-
-## **📖 Grading Criteria & Alignment**
-This project meets the grading criteria through:
-
-| **Criterion**          | **How Addressed** |
-|----------------------|-----------------------------------------------------|
-| **Problem Understanding** | Clearly defines Problems 3.7 & 3.9 with algorithmic solutions. |
-| **Implementation Accuracy** | Implements BFS, DFS, UCS, A*, Bellman-Ford, and Johnson’s Algorithm correctly. |
-| **Experimentation** | Tests search algorithms with various problem instances. |
-| **Analysis & Reporting** | Includes performance comparisons, edge case analysis, and negative weight handling. |
-| **Presentation Quality** | Professional README, structured codebase, and detailed Jupyter Notebook. |
+The project also contains detailed performance and experiment analyses in the `notebooks/` and `reports/` folders.
 
 ---
 
-## **🔹 Challenges, Lessons Learned & Future Work**
-### **Challenges Encountered:**
-- Handling negative weight cycles efficiently.
-- Optimizing graph search to avoid redundant expansions.
+## Grading Criteria & Alignment
 
-### **Lessons Learned:**
-- State-space representation is crucial for search efficiency.
-- **Graph search significantly improves performance** over tree search.
-- **Negative weights require specialized algorithms like Bellman-Ford.**
-
-### **Future Work:**
-- Extend A* with **better heuristics** for faster pathfinding.
-- Implement **Bidirectional Search** to improve efficiency.
-- Explore **hybrid approaches** for solving real-world search problems.
+| **Criterion**                 | **How Addressed**                                                                      |
+|-------------------------------|----------------------------------------------------------------------------------------|
+| Problem Understanding         | Clear definitions and problem breakdowns for Problems 3.7 & 3.9                         |
+| Implementation Accuracy       | Correct implementations of BFS, DFS, UCS, A*, Bellman-Ford, and Johnson’s Algorithm     |
+| Experimentation               | Multiple search algorithms tested on a manually defined, realistic state space          |
+| Analysis & Reporting          | Detailed performance analysis provided in notebooks and reports                         |
+| Presentation Quality          | Professional code structure, comprehensive README, and clear, polished visualizations    |
 
 ---
 
-## **📖 References and Citations**
+## Challenges, Lessons Learned & Future Work
+
+### Challenges Encountered
+- Efficient handling of negative weight cycles.
+- Balancing manual vs. automated connectivity in the state space.
+
+### Lessons Learned
+- A clear state-space representation is vital for robust search.
+- Graph search techniques significantly improve efficiency over tree search.
+- Negative costs require specialized handling (Bellman-Ford, Johnson’s Algorithm).
+
+### Future Work
+- Improve heuristics for A* to further optimize performance.
+- Implement bidirectional search for faster convergence.
+- Explore hybrid methods combining multiple search strategies.
+
+---
+
+## References & Citations
+
 - **Textbook:**  
-  Russell, S., & Norvig, P. *(2010). Artificial Intelligence: A Modern Approach* (3rd Edition).
+  Russell, S., & Norvig, P. (2010). *Artificial Intelligence: A Modern Approach* (3rd Edition).
 - **Code Base:**  
-  [UC Berkeley AI Repository](https://github.com/aimacode/aima-python)  
-- **Research Papers & Additional Sources:**
-  - Bellman-Ford Algorithm: [https://en.wikipedia.org/wiki/Bellman–Ford_algorithm](https://en.wikipedia.org/wiki/Bellman–Ford_algorithm)
-  - Johnson’s Algorithm: [https://en.wikipedia.org/wiki/Johnson%27s_algorithm](https://en.wikipedia.org/wiki/Johnson%27s_algorithm)
+  [UC Berkeley AI Repository](https://github.com/aimacode/aima-python)
+- **Algorithms:**  
+  - Bellman-Ford: [Wikipedia](https://en.wikipedia.org/wiki/Bellman–Ford_algorithm)  
+  - Johnson’s Algorithm: [Wikipedia](https://en.wikipedia.org/wiki/Johnson%27s_algorithm)
 
 ---
 
-## **🎯 Conclusion**
-This project successfully implements and analyzes **search algorithms for AI**, particularly focusing on the **challenges of negative step costs**. By implementing **classical and advanced search methods**, this work provides **a detailed comparison** of their strengths and weaknesses.
+## Conclusion
+
+This project successfully implements and compares various search algorithms for AI. The custom state space replicates Figure 3.31 and includes professional-grade visualizations that are both displayed on screen and saved for documentation. The code is modular, well-documented, and adheres to PEP 8 standards.
