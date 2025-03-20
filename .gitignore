@@ -1,3 +1,4 @@
 codebase.txt
 llmify_config.yaml
 __pycache__/
+.venv/
