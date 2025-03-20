@@ -47,6 +47,15 @@ The project includes **advanced visualization tools** to generate and display:
 
 ### **Jupyter Notebook** 
 - Detailed experimental analysis, performance evaluations, and solution insights.  
+
+---
+
+## Project Presentation 🎥  
+
+A detailed video presentation covering the **AI Search Algorithms** project, including its implementation, results, and key takeaways, is available here:
+
+🔗 **Direct Link:** [https://youtu.be/UsZU4QsXNiE?feature=shared](https://youtu.be/UsZU4QsXNiE?feature=shared)
+
 ---
 
 ## Repository Structure
