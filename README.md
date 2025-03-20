@@ -24,12 +24,14 @@
 
 This project implements and analyzes state-space search algorithms to solve Problems 3.7 and 3.9 from *Artificial Intelligence: A Modern Approach (3rd Edition)*. The focus is on:
 
-- **Uninformed Search:** BFS, DFS, Uniform Cost Search (UCS)
-- **Informed Search:** A* (using a Euclidean heuristic)
-- **Graph Search vs. Tree Search:** Evaluating efficiency and optimality
-- **Handling Negative Step Costs:** Implementing Bellman-Ford and Johnson’s Algorithms for problems with negative weights (code provided from UC Berkeley’s repository)
+- **Uninformed Search:** Implementations of Breadth-First Search (BFS), Depth-First Search (DFS), and Uniform Cost Search (UCS).
+- **Informed Search:** The A* search algorithm using a Euclidean heuristic.
+- **Graph Search vs. Tree Search:** Evaluating efficiency and optimality when exploring different problem instances.
+- **Handling Negative Step Costs:** Addressing challenges posed by negative weights using the Bellman-Ford and Johnson’s algorithms (adapted from the UC Berkeley AI Repository).
 
-Additionally, the project features a custom environment that replicates Figure 3.31 using a manually defined state space with polygons. Enhanced visualization routines both display and save figures (with descriptive filenames) in a designated folder.
+Additionally, the project features a custom environment that replicates Figure 3.31 using a manually defined state space based on polygons. Advanced visualization routines are included to both display and save figures (with descriptive filenames) to a designated folder.
+
+For further analysis, the project also includes a Jupyter Notebook and written reports that cover detailed experimental results and problem analyses.
 
 ---
 
@@ -39,9 +41,9 @@ Additionally, the project features a custom environment that replicates Figure 3
 AI-Search-Algorithms/
 │
 ├── codebase.txt                 # Overview of the project’s file structure
-├── llmify_config.yaml           # LLMify configuration to ignore specific files/directories
-├── README.md                    # This file: project overview and documentation
-├── requirements.txt             # Required Python packages (numpy, matplotlib, heapq)
+├── llmify_config.yaml           # Configuration to ignore specific files and directories (e.g., docs, .git, __pycache__, etc.)
+├── README.md                    # This file: project overview and documentation (updated)
+├── requirements.txt             # Required Python packages (numpy, matplotlib, networkx, shapely)
 │
 ├── notebooks/                   # Jupyter Notebooks for analysis and reporting
 │   └── AI_Search_Report.ipynb   # Detailed report on search algorithms and experiments
@@ -58,6 +60,9 @@ AI-Search-Algorithms/
 │   ├── berkeley_ai/             # UC Berkeley search code (unaltered)
 │   │   ├── search.py            # Search algorithms (BFS, DFS, UCS, A*, etc.)
 │   │   └── utils.py             # Utility functions for search algorithms
+│   │
+│   ├── missionaries_and_cannibals/   # Missionaries and Cannibals problem implementation (Problem 3.9 example)
+│   │   └── Exercise3.9.py
 │   │
 │   └── shortest_path/           # Custom environment and search problem modules
 │       ├── geometry.py          # Geometry utilities (intersection, point-in-polygon, etc.)
@@ -76,9 +81,9 @@ AI-Search-Algorithms/
 
 ### Prerequisites
 
-- Python 3.8 or higher
-- Jupyter Notebook
-- Required Libraries: `numpy`, `matplotlib`, `heapq`
+- Python 3.8 or higher  
+- Jupyter Notebook  
+- Required Libraries: `numpy`, `matplotlib`, `networkx`, `shapely`, `heapq`
 
 ### Installation
 
@@ -98,28 +103,27 @@ AI-Search-Algorithms/
 
 ### Running Individual Algorithms
 
-- **BFS & DFS:**  
+- **Shortest Path (Exercise 3.7):**  
+  Navigate to the shortest_path directory and run:
   ```bash
-  python src/bfs_dfs.py
+  cd src/shortest_path
+  python main.py
   ```
-- **UCS & A\*:**  
+
+- **Missionaries and Cannibals (Exercise 3.9):**  
+  Navigate to the missionaries and cannibals directory and run:
   ```bash
-  python src/ucs_astar.py
-  ```
-- **Bellman-Ford & Johnson’s Algorithm:**  
-  ```bash
-  python src/bellman_ford.py
-  python src/johnson.py
+  cd src/missionaries_and_cannibals
+  python Exercise3.9.py
   ```
 
 ### Running the Main Environment & Visualizations
 
 The main script builds the custom Figure 3.31 environment, runs BFS, DFS, UCS, and A* searches, and displays & saves visualizations.
 
-To run the main script:
+To run the main script from the `src/shortest_path` directory:
 ```bash
-# Ensure you run from the project root or set PYTHONPATH appropriately.
-python -m shortest_path.main
+python main.py
 ```
 This will:
 - Display the initial state space (with polygon labels).
@@ -138,39 +142,27 @@ Each algorithm is evaluated based on:
 
 In our experiments:
 - **BFS and DFS** may return longer, suboptimal paths.
-- **UCS and A\*** (with the Euclidean heuristic) typically return the optimal path.
+- **UCS and A\*** (using the Euclidean heuristic) typically return the optimal path.
 
-The project also contains detailed performance and experiment analyses in the `notebooks/` and `reports/` folders.
-
----
-
-## Grading Criteria & Alignment
-
-| **Criterion**                 | **How Addressed**                                                                      |
-|-------------------------------|----------------------------------------------------------------------------------------|
-| Problem Understanding         | Clear definitions and problem breakdowns for Problems 3.7 & 3.9                         |
-| Implementation Accuracy       | Correct implementations of BFS, DFS, UCS, A*, Bellman-Ford, and Johnson’s Algorithm     |
-| Experimentation               | Multiple search algorithms tested on a manually defined, realistic state space          |
-| Analysis & Reporting          | Detailed performance analysis provided in notebooks and reports                         |
-| Presentation Quality          | Professional code structure, comprehensive README, and clear, polished visualizations    |
+Detailed performance and experiment analyses can be found in the `notebooks/` and `reports/` folders.
 
 ---
 
 ## Challenges, Lessons Learned & Future Work
 
 ### Challenges Encountered
-- Efficient handling of negative weight cycles.
-- Balancing manual vs. automated connectivity in the state space.
+- Efficiently handling cycles and negative weights.
+- Balancing manual versus automated connectivity in the state space.
 
 ### Lessons Learned
-- A clear state-space representation is vital for robust search.
+- A clear and robust state-space representation is crucial for effective search.
 - Graph search techniques significantly improve efficiency over tree search.
-- Negative costs require specialized handling (Bellman-Ford, Johnson’s Algorithm).
+- Negative costs require specialized algorithms like Bellman-Ford and Johnson’s for proper handling.
 
 ### Future Work
-- Improve heuristics for A* to further optimize performance.
-- Implement bidirectional search for faster convergence.
-- Explore hybrid methods combining multiple search strategies.
+- Improve A* algorithm heuristics to further optimize performance.
+- Implement bidirectional search to accelerate convergence.
+- Explore hybrid methods combining multiple search strategies for more complex problems.
 
 ---
 
@@ -179,7 +171,7 @@ The project also contains detailed performance and experiment analyses in the `n
 - **Textbook:**  
   Russell, S., & Norvig, P. (2010). *Artificial Intelligence: A Modern Approach* (3rd Edition).
 - **Code Base:**  
-  [UC Berkeley AI Repository](https://github.com/aimacode/aima-python)
+  UC Berkeley AI Repository – [https://github.com/aimacode/aima-python](https://github.com/aimacode/aima-python)
 - **Algorithms:**  
   - Bellman-Ford: [Wikipedia](https://en.wikipedia.org/wiki/Bellman–Ford_algorithm)  
   - Johnson’s Algorithm: [Wikipedia](https://en.wikipedia.org/wiki/Johnson%27s_algorithm)
@@ -188,4 +180,4 @@ The project also contains detailed performance and experiment analyses in the `n
 
 ## Conclusion
 
-This project successfully implements and compares various search algorithms for AI. The custom state space replicates Figure 3.31 and includes professional-grade visualizations that are both displayed on screen and saved for documentation. The code is modular, well-documented, and adheres to PEP 8 standards.
+This project successfully implements and compares various search algorithms for AI. The custom state space (Figure 3.31) with polygon labels has been rigorously constructed and visualized. Experiments show that while BFS and DFS are straightforward, UCS and A* provide more optimal solutions by effectively incorporating cost and heuristic information. The inclusion of the Missionaries and Cannibals problem further demonstrates practical problem solving using these search strategies.

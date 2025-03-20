@@ -14,7 +14,7 @@ import math
 import os
 import matplotlib.pyplot as plt
 
-from shortest_path.geometry import segments_intersect, line_clear, point_in_polygon
+from .geometry import segments_intersect, line_clear, point_in_polygon
 
 
 class Vertex:

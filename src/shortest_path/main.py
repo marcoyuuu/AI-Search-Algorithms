@@ -19,8 +19,8 @@ Usage:
 import os
 import matplotlib.pyplot as plt
 
-from shortest_path.figure_3_31_env import build_figure_3_31_env
-from shortest_path.search_problem import ConvexPolygonPathProblem, run_searches
+from .figure_3_31_env import build_figure_3_31_env
+from .search_problem import ConvexPolygonPathProblem, run_searches
 
 
 def ensure_visualizations_folder():

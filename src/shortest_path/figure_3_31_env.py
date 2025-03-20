@@ -6,7 +6,7 @@ Polygons are created with minimal labeling (one per shape),
 and manual cross-polygon edges are asserted as specified.
 """
 
-from shortest_path.state_space import StateSpace
+from .state_space import StateSpace
 
 def build_figure_3_31_env():
     """
